@@ -1,9 +1,14 @@
 {% ckan_extends %}
 
-{% block resource_additional_information_inner %}
+{% block secondary_content %}
   {# Try and inherit from archiver's resource_read #}
+  {% if c.pkg_dict %}
+  <div class="module module-narrow module-shallow context-info">
+    <h2 class="module-heading"><i class="fa fa-eye"></i> {{ _('Openness') }}</h2>
+    <section class="module-content">
+      {{ h.qa_openness_stars_dataset_html(c.resource) }}
+    </section>
+  </div>
+  {% endif %}
   {{ super() }}
-  <br>
-  {{ h.qa_openness_stars_resource_html(c.resource) }}
-
 {% endblock %}
